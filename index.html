@@ -1,220 +1,78 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
   <meta charset="UTF-8">
-  <title>我的增强版网址导航</title>
+  <title>我的书签导航</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; background: #f0f0f0; }
-    h1 { text-align: center; margin-bottom: 20px; }
-
-    #bookmark-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      padding: 0;
-      margin-top: 20px;
-    }
-
-    #bookmark-list li {
-      list-style: none;
-      background: #fff;
-      padding: 6px 10px;
-      border-radius: 5px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 150px;
-      text-align: center;
-      font-size: 14px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-      position: relative; /* 便于定位删除叉号 */
-      transition: transform 0.1s;
-    }
-
-    #bookmark-list li:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-    }
-
-    #bookmark-list a {
-      text-decoration: none;
-      color: #333;
-      word-break: break-all;
-    }
-
-    .delete-btn {
-      position: absolute;
-      top: 2px;
-      right: 2px;
-      font-size: 12px;
-      padding: 2px 5px;
-      cursor: pointer;
-      border: none;
-      background: #ff4d4f;
-      color: #fff;
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      line-height: 16px;
-      display: none; /* 默认隐藏 */
-    }
-
-    /* 管理模式下，鼠标悬停显示叉号 */
-    li.manage-mode:hover .delete-btn {
-      display: block;
-    }
-
-    /* 输入区域 */
-    input[type=text], select, button {
-      padding: 5px;
-      margin: 0 5px 10px 0;
-      font-size: 14px;
-    }
-
-    .controls { margin-top: 10px; }
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+    h1 { text-align: center; }
+    #controls { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+    #search-input, #filter-category { padding: 5px; }
+    ul { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
+    li { background: white; padding: 10px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: center; }
+    li a { text-decoration: none; color: #333; font-weight: bold; }
+    li small { display: block; margin-top: 5px; color: #666; font-size: 12px; }
   </style>
 </head>
 <body>
-  <h1>我的增强版网址导航</h1>
+  <h1>📑 我的书签导航</h1>
 
-  <div>
-    <input id="bookmark-name" type="text" placeholder="网站名称">
-    <input id="bookmark-url" type="text" placeholder="网站链接">
-    <select id="bookmark-category">
-      <option value="工具">工具</option>
-      <option value="工作">工作</option>
-      <option value="娱乐">娱乐</option>
-      <option value="其他">其他</option>
+  <div id="controls">
+    <input id="search-input" type="text" placeholder="搜索书签..." oninput="renderBookmarks()">
+    <select id="filter-category" onchange="renderBookmarks()">
+      <option value="">全部分类</option>
     </select>
-    <button onclick="addBookmark()">添加书签</button>
-    <button onclick="toggleManageMode()">管理书签</button>
-  </div>
-
-  <div class="controls">
-    <input id="search-input" type="text" placeholder="搜索书签" oninput="loadBookmarks()">
-    <select id="filter-category" onchange="loadBookmarks()">
-      <option value="">显示所有分类</option>
-      <option value="工具">工具</option>
-      <option value="工作">工作</option>
-      <option value="娱乐">娱乐</option>
-      <option value="其他">其他</option>
-    </select>
-    <button onclick="exportBookmarks()">导出书签</button>
-    <input type="file" id="import-file" onchange="importBookmarks(event)">
   </div>
 
   <ul id="bookmark-list"></ul>
 
   <script>
-    let manageMode = false; // 管理模式开关
+    let allBookmarks = [];
 
-    function getBookmarks() {
-      return JSON.parse(localStorage.getItem('bookmarks') || '[]');
-    }
-
-    function saveBookmarks(bookmarks) {
-      localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
-    }
-
-    function addBookmark() {
-      const name = document.getElementById('bookmark-name').value.trim();
-      let url = document.getElementById('bookmark-url').value.trim();
-      const category = document.getElementById('bookmark-category').value;
-
-      if (!name || !url) { 
-        alert('请填写名称和链接'); 
-        return; 
+    // 🚀 从 GitHub 加载书签 JSON
+    async function loadBookmarks() {
+      try {
+        const res = await fetch("bookmarks.json");  // ✅ 这里写相对路径即可
+        allBookmarks = await res.json();
+        initCategories();
+        renderBookmarks();
+      } catch (err) {
+        console.error("加载书签失败：", err);
       }
-
-      if (!/^https?:\/\//i.test(url)) {
-        url = 'https://' + url;
-      }
-
-      const bookmarks = getBookmarks();
-      bookmarks.push({ name, url, category });
-      saveBookmarks(bookmarks);
-
-      document.getElementById('bookmark-name').value = '';
-      document.getElementById('bookmark-url').value = '';
-      loadBookmarks();
     }
 
-    function deleteBookmark(index) {
-      const bookmarks = getBookmarks();
-      bookmarks.splice(index, 1);
-      saveBookmarks(bookmarks);
-      loadBookmarks();
-    }
-
-    function toggleManageMode() {
-      manageMode = !manageMode;
-      loadBookmarks();
-    }
-
-    function loadBookmarks() {
-      const bookmarks = getBookmarks();
-      const list = document.getElementById('bookmark-list');
-      const search = document.getElementById('search-input').value.toLowerCase();
-      const filterCategory = document.getElementById('filter-category').value;
-
-      list.innerHTML = '';
-      bookmarks.forEach((b, index) => {
-        if ((filterCategory && b.category !== filterCategory) ||
-            (search && !b.name.toLowerCase().includes(search) && !b.url.toLowerCase().includes(search))) {
-          return;
-        }
-
-        const li = document.createElement('li');
-        if (manageMode) li.classList.add('manage-mode');
-
-        li.innerHTML = `
-          <a href="${b.url}" target="_blank" title="${b.name} [${b.category}]">
-            ${b.name}
-          </a>
-          <button class="delete-btn" onclick="deleteBookmark(${index})">×</button>
-        `;
-        list.appendChild(li);
+    // 初始化分类下拉菜单
+    function initCategories() {
+      const select = document.getElementById("filter-category");
+      const categories = [...new Set(allBookmarks.map(b => b.category))];
+      categories.forEach(cat => {
+        const opt = document.createElement("option");
+        opt.value = cat;
+        opt.textContent = cat;
+        select.appendChild(opt);
       });
     }
 
-    function exportBookmarks() {
-      const bookmarks = getBookmarks();
-      const blob = new Blob([JSON.stringify(bookmarks, null, 2)], {type: "application/json"});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'bookmarks.json';
-      a.click();
-      URL.revokeObjectURL(url);
+    // 渲染书签
+    function renderBookmarks() {
+      const list = document.getElementById("bookmark-list");
+      const search = document.getElementById("search-input").value.toLowerCase();
+      const filterCategory = document.getElementById("filter-category").value;
+
+      list.innerHTML = "";
+      allBookmarks
+        .filter(b => (!filterCategory || b.category === filterCategory) &&
+                     (!search || b.name.toLowerCase().includes(search) || b.url.toLowerCase().includes(search)))
+        .forEach(b => {
+          const li = document.createElement("li");
+          li.innerHTML = `
+            <a href="${b.url}" target="_blank">${b.name}</a>
+            <small>[${b.category}]</small>
+          `;
+          list.appendChild(li);
+        });
     }
 
-    function importBookmarks(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        try {
-          const imported = JSON.parse(e.target.result);
-          if (!Array.isArray(imported)) throw new Error('格式错误');
-          const bookmarks = getBookmarks();
-          imported.forEach(b => {
-            if (!bookmarks.find(existing => existing.url === b.url)) {
-              bookmarks.push(b);
-            }
-          });
-          saveBookmarks(bookmarks);
-          loadBookmarks();
-          alert('导入成功！');
-        } catch (err) {
-          alert('导入失败：' + err.message);
-        }
-      }
-      reader.readAsText(file);
-      event.target.value = '';
-    }
-
-    // 页面初始化加载书签
     loadBookmarks();
   </script>
 </body>
