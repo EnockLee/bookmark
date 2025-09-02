@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>书签导航</title>
+  <script src="https://cdn.jsdelivr.net/npm/tiny-pinyin@1.2.3/dist/tiny-pinyin.min.js"></script>
   <style>
     body { 
       font-family: Arial, sans-serif; 
@@ -64,13 +65,10 @@
 <body>
 
   <div id="controls">
-    <input id="search-input" type="text" placeholder="搜索书签（中文/拼音）..." oninput="renderBookmarks()">
+    <input id="search-input" type="text" placeholder="搜索书签（中文/拼音/网址）..." oninput="renderBookmarks()">
   </div>
 
   <div class="grid-container" id="bookmark-grid"></div>
-
-  <!-- 引入 tiny-pinyin -->
-  <script src="https://cdn.jsdelivr.net/npm/tiny-pinyin/dist/tiny-pinyin.min.js"></script>
 
   <script>
     let allBookmarks = [];
@@ -87,7 +85,7 @@
 
     async function loadBookmarks() {
       try {
-        const res = await fetch("bookmarks.json");  // 需在 HTTP 服务下访问
+        const res = await fetch("bookmarks.json");  // HTTP 服务下访问
         allBookmarks = await res.json();
         renderBookmarks();
       } catch (err) {
@@ -118,7 +116,7 @@
     }
 
     function renderBookmarks() {
-      const search = document.getElementById("search-input").value.toLowerCase();
+      const search = document.getElementById("search-input").value.toLowerCase().replace(/\s+/g, '');
       const grid = document.getElementById("bookmark-grid");
       grid.innerHTML = "";
 
@@ -132,11 +130,19 @@
         col.appendChild(title);
 
         const filtered = allBookmarks.filter(b => {
-          const name = b.name.toLowerCase();
-          const url = b.url.toLowerCase();
-          const pinyinName = Pinyin.convertToPinyin(b.name).replace(/\s+/g,'').toLowerCase();
-          return b.category === cat && 
-                 (!search || name.includes(search) || pinyinName.includes(search) || url.includes(search));
+          if (b.category !== cat) return false;
+
+          const nameLower = b.name.toLowerCase();
+          const urlLower = b.url.toLowerCase();
+
+          let pinyinName = '';
+          try {
+            pinyinName = Pinyin.convertToPinyin(b.name || '').replace(/\s+/g, '').toLowerCase();
+          } catch(e) {
+            pinyinName = '';
+          }
+
+          return !search || nameLower.includes(search) || pinyinName.includes(search) || urlLower.includes(search);
         });
 
         filtered.forEach(b => {
