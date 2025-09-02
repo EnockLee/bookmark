@@ -72,9 +72,10 @@
   <script>
     let allBookmarks = [];
 
+    // 从本地 JSON 文件加载书签
     async function loadBookmarks() {
       try {
-        const res = await fetch("bookmarks.json");
+        const res = await fetch("bookmarks.json");  // 替换成你的 JSON 路径
         allBookmarks = await res.json();
         initCategories();
         renderBookmarks();
@@ -83,6 +84,7 @@
       }
     }
 
+    // 初始化分类下拉菜单
     function initCategories() {
       const select = document.getElementById("filter-category");
       const categories = [...new Set(allBookmarks.map(b => b.category))].sort();
@@ -94,6 +96,7 @@
       });
     }
 
+    // 渲染书签列表（带 favicon，Google + 本地默认两步）
     function renderBookmarks() {
       const list = document.getElementById("bookmark-list");
       const search = document.getElementById("search-input").value.toLowerCase();
@@ -105,31 +108,18 @@
                      (!search || b.name.toLowerCase().includes(search) || b.url.toLowerCase().includes(search)))
         .forEach(b => {
           const li = document.createElement("li");
+
           const googleFavicon = `https://www.google.com/s2/favicons?sz=32&domain_url=${b.url}`;
-          const defaultFavicon = 'icons/default.png';
+          const defaultFavicon = './icons/default.png'; // 相对路径，兼容 GitHub Pages 子目录
 
-          const img = document.createElement("img");
-          img.className = "favicon";
-          img.src = googleFavicon;
-          img.alt = "icon";
-          // 如果 Google Favicon 加载失败，显示本地默认
-          img.onerror = function() {
-            this.onerror = null;
-            this.src = defaultFavicon;
-          };
-
-          li.appendChild(img);
-
-          const a = document.createElement("a");
-          a.href = b.url;
-          a.target = "_blank";
-          a.textContent = b.name;
-          li.appendChild(a);
-
-          const small = document.createElement("small");
-          small.textContent = `[${b.category}]`;
-          li.appendChild(small);
-
+          li.innerHTML = `
+            <img class="favicon" 
+                 src="${googleFavicon}" 
+                 onerror="this.onerror=null;this.src='${defaultFavicon}';" 
+                 alt="icon">
+            <a href="${b.url}" target="_blank">${b.name}</a>
+            <small>[${b.category}]</small>
+          `;
           list.appendChild(li);
         });
     }
