@@ -14,153 +14,96 @@
       justify-content: center; 
       gap: 10px; 
       margin-bottom: 20px; 
-      flex-wrap: wrap;
     }
-    #search-input { 
-      padding: 8px; 
-      font-size: 14px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      width: 250px;
+    #search-input, #filter-category { 
+      padding: 5px; 
     }
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(8, 1fr);
-      gap: 12px;
+    ul { 
+      list-style: none; 
+      padding: 0; 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
+      gap: 10px; 
     }
-    .column {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .bookmark {
+    li { 
       background: white; 
       padding: 10px; 
       border-radius: 8px; 
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1); 
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+      text-align: center; 
     }
-    .bookmark img.favicon {
-      width: 16px;
-      height: 16px;
-      flex-shrink: 0;
-    }
-    .bookmark a { 
+    li a { 
       text-decoration: none; 
       color: #333; 
       font-weight: bold; 
-      flex-grow: 1;
-      text-align: left;
     }
-    .column-title {
-      font-weight: bold;
-      margin-bottom: 6px;
-      text-align: center;
+    li small { 
+      display: block; 
+      margin-top: 5px; 
+      color: #666; 
+      font-size: 12px; 
     }
   </style>
 </head>
 <body>
 
   <div id="controls">
-    <input id="search-input" type="text" placeholder="搜索书签（支持中文/拼音/URL）" oninput="renderBookmarks()">
+    <input id="search-input" type="text" placeholder="搜索书签..." oninput="renderBookmarks()">
+    <select id="filter-category" onchange="renderBookmarks()">
+      <option value="">全部分类</option>
+    </select>
   </div>
 
-  <div class="grid-container" id="bookmark-grid"></div>
+  <ul id="bookmark-list"></ul>
 
-  <script src="https://cdn.jsdelivr.net/npm/pinyin-pro/dist/pinyin-pro.min.js"></script>
   <script>
     let allBookmarks = [];
-    const categories = [
-      "搜索",
-      "社交",
-      "视频",
-      "娱乐/音乐",
-      "购物",
-      "开发/学习",
-      "工具/办公",
-      "新闻/金融/旅行/生活/游戏"
-    ];
 
+    // 从 GitHub 仓库加载书签 JSON
     async function loadBookmarks() {
       try {
-        const res = await fetch("bookmarks.json"); // 需 HTTP 服务
+        const res = await fetch("bookmarks.json");  // 替换成你的 JSON 路径
         allBookmarks = await res.json();
-
-        // 生成每个书签的拼音字段
-        allBookmarks.forEach(b => {
-          b.pinyin = window.pinyinPro.pinyin(b.name, {toneType: 'none', type: 'string'}).toLowerCase();
-        });
-
+        initCategories();
         renderBookmarks();
       } catch (err) {
         console.error("加载书签失败：", err);
       }
     }
 
-    function getFavicon(url) {
-      const googleFavicon = `https://www.google.com/s2/favicons?sz=32&domain_url=${url}`;
-      const siteFavicon = new URL('/favicon.ico', url).href;
-      const defaultFavicon = 'icons/default.png'; 
-
-      const img = document.createElement("img");
-      img.className = "favicon";
-      img.src = googleFavicon;
-
-      img.onerror = () => {
-        img.onerror = () => { img.src = defaultFavicon; };
-        img.src = siteFavicon;
-      };
-      img.onload = () => {
-        if (!img.naturalWidth || !img.naturalHeight) img.src = defaultFavicon;
-      };
-
-      return img;
+    // 初始化分类下拉菜单
+    function initCategories() {
+      const select = document.getElementById("filter-category");
+      const categories = [...new Set(allBookmarks.map(b => b.category))];
+      categories.forEach(cat => {
+        const opt = document.createElement("option");
+        opt.value = cat;
+        opt.textContent = cat;
+        select.appendChild(opt);
+      });
     }
 
+    // 渲染书签列表
     function renderBookmarks() {
+      const list = document.getElementById("bookmark-list");
       const search = document.getElementById("search-input").value.toLowerCase();
-      const grid = document.getElementById("bookmark-grid");
-      grid.innerHTML = "";
+      const filterCategory = document.getElementById("filter-category").value;
 
-      categories.forEach(cat => {
-        const col = document.createElement("div");
-        col.className = "column";
-
-        const title = document.createElement("div");
-        title.className = "column-title";
-        title.textContent = cat;
-        col.appendChild(title);
-
-        const filtered = allBookmarks.filter(b => {
-          if (b.category !== cat) return false;
-          if (!search) return true;
-          return b.name.toLowerCase().includes(search) || 
-                 (b.pinyin && b.pinyin.includes(search)) ||
-                 b.url.toLowerCase().includes(search);
+      list.innerHTML = "";
+      allBookmarks
+        .filter(b => (!filterCategory || b.category === filterCategory) &&
+                     (!search || b.name.toLowerCase().includes(search) || b.url.toLowerCase().includes(search)))
+        .forEach(b => {
+          const li = document.createElement("li");
+          li.innerHTML = `
+            <a href="${b.url}" target="_blank">${b.name}</a>
+            <small>[${b.category}]</small>
+          `;
+          list.appendChild(li);
         });
-
-        filtered.forEach(b => {
-          const div = document.createElement("div");
-          div.className = "bookmark";
-          div.appendChild(getFavicon(b.url));
-
-          const link = document.createElement("a");
-          link.href = b.url;
-          link.target = "_blank";
-          link.textContent = b.name;
-          div.appendChild(link);
-
-          col.appendChild(div);
-        });
-
-        grid.appendChild(col);
-      });
     }
 
     loadBookmarks();
   </script>
-
 </body>
 </html>
