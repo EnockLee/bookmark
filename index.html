@@ -34,27 +34,25 @@
       padding: 10px; 
       border-radius: 8px; 
       box-shadow: 0 2px 6px rgba(0,0,0,0.1); 
-      text-align: center; 
       display: flex;
       align-items: center;
       gap: 8px;
+    }
+    li img.favicon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
     }
     li a { 
       text-decoration: none; 
       color: #333; 
       font-weight: bold; 
       flex-grow: 1;
+      text-align: left;
     }
     li small { 
-      display: block; 
-      margin-top: 5px; 
       color: #666; 
       font-size: 12px; 
-    }
-    img.favicon {
-      width: 16px;
-      height: 16px;
-      vertical-align: middle;
     }
   </style>
 </head>
@@ -75,7 +73,7 @@
     // 从本地 JSON 文件加载书签
     async function loadBookmarks() {
       try {
-        const res = await fetch("bookmarks.json");  // 替换成你的 JSON 路径
+        const res = await fetch("bookmarks.json");  // 注意：需在 HTTP 服务下访问
         allBookmarks = await res.json();
         initCategories();
         renderBookmarks();
@@ -87,7 +85,10 @@
     // 初始化分类下拉菜单
     function initCategories() {
       const select = document.getElementById("filter-category");
-      const categories = [...new Set(allBookmarks.map(b => b.category))].sort();
+      // 清空之前的分类（保留“全部分类”）
+      select.length = 1;
+      // 去掉 undefined / 空值
+      const categories = [...new Set(allBookmarks.map(b => b.category).filter(Boolean))].sort();
       categories.forEach(cat => {
         const opt = document.createElement("option");
         opt.value = cat;
@@ -96,7 +97,25 @@
       });
     }
 
-    // 渲染书签列表（带 favicon，三步获取）
+    // favicon 获取 + 回退逻辑
+    function getFavicon(url) {
+      const googleFavicon = `https://www.google.com/s2/favicons?sz=32&domain_url=${url}`;
+      const siteFavicon = new URL('/favicon.ico', url).href;
+      const defaultFavicon = 'icons/default.png';
+
+      const img = document.createElement("img");
+      img.className = "favicon";
+      img.src = googleFavicon;
+
+      img.onerror = () => {
+        img.onerror = () => { img.src = defaultFavicon; };
+        img.src = siteFavicon;
+      };
+
+      return img;
+    }
+
+    // 渲染书签列表
     function renderBookmarks() {
       const list = document.getElementById("bookmark-list");
       const search = document.getElementById("search-input").value.toLowerCase();
@@ -109,18 +128,21 @@
         .forEach(b => {
           const li = document.createElement("li");
 
-          const googleFavicon = `https://www.google.com/s2/favicons?sz=32&domain_url=${b.url}`;
-          const siteFavicon = new URL('/favicon.ico', b.url).href;
-          const defaultFavicon = 'icons/default.png';
+          // favicon
+          li.appendChild(getFavicon(b.url));
 
-          li.innerHTML = `
-            <img class="favicon" 
-                 src="${googleFavicon}" 
-                 onerror="this.onerror=null;this.src='${siteFavicon}';this.onerror=function(){this.src='${defaultFavicon}';}" 
-                 alt="icon">
-            <a href="${b.url}" target="_blank">${b.name}</a>
-            <small>[${b.category}]</small>
-          `;
+          // 链接
+          const link = document.createElement("a");
+          link.href = b.url;
+          link.target = "_blank";
+          link.textContent = b.name;
+          li.appendChild(link);
+
+          // 分类标签
+          const small = document.createElement("small");
+          small.textContent = `[${b.category}]`;
+          li.appendChild(small);
+
           list.appendChild(li);
         });
     }
