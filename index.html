@@ -96,7 +96,7 @@
       });
     }
 
-    // 渲染书签列表（带 favicon，三步获取）
+    // 渲染书签列表（带 favicon，Google + 本地默认两步）
     function renderBookmarks() {
       const list = document.getElementById("bookmark-list");
       const search = document.getElementById("search-input").value.toLowerCase();
@@ -110,13 +110,12 @@
           const li = document.createElement("li");
 
           const googleFavicon = `https://www.google.com/s2/favicons?sz=32&domain_url=${b.url}`;
-          const siteFavicon = new URL('/favicon.ico', b.url).href;
           const defaultFavicon = 'icons/default.png';
 
           li.innerHTML = `
             <img class="favicon" 
                  src="${googleFavicon}" 
-                 onerror="this.onerror=null;this.src='${siteFavicon}';this.onerror=function(){this.src='${defaultFavicon}';}" 
+                 onerror="this.onerror=null;this.src='${defaultFavicon}';" 
                  alt="icon">
             <a href="${b.url}" target="_blank">${b.name}</a>
             <small>[${b.category}]</small>
