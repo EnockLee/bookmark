@@ -107,9 +107,17 @@
       img.className = "favicon";
       img.src = googleFavicon;
 
+      // Google 失败 → 试网站
       img.onerror = () => {
         img.onerror = () => { img.src = defaultFavicon; };
         img.src = siteFavicon;
+      };
+
+      // 如果加载成功但图片是空的，也换成默认图
+      img.onload = () => {
+        if (!img.naturalWidth || !img.naturalHeight) {
+          img.src = defaultFavicon;
+        }
       };
 
       return img;
