@@ -1,417 +1,85 @@
 [
-  {
-    "name": "百度",
-    "url": "https://www.baidu.com",
-    "category": "工具"
-  },
-  {
-    "name": "谷歌",
-    "url": "https://www.google.com",
-    "category": "工具"
-  },
-  {
-    "name": "必应",
-    "url": "https://www.bing.com",
-    "category": "搜索"
-  },
-  {
-    "name": "搜狗",
-    "url": "https://www.sogou.com",
-    "category": "搜索"
-  },
-  {
-    "name": "知乎",
-    "url": "https://www.zhihu.com",
-    "category": "社交"
-  },
-  {
-    "name": "微博",
-    "url": "https://www.weibo.com",
-    "category": "社交"
-  },
-  {
-    "name": "豆瓣",
-    "url": "https://www.douban.com",
-    "category": "社交"
-  },
-  {
-    "name": "抖音",
-    "url": "https://www.douyin.com",
-    "category": "视频"
-  },
-  {
-    "name": "B站",
-    "url": "https://www.bilibili.com",
-    "category": "视频"
-  },
-  {
-    "name": "优酷",
-    "url": "https://www.youku.com",
-    "category": "视频"
-  },
-  {
-    "name": "爱奇艺",
-    "url": "https://www.iqiyi.com",
-    "category": "视频"
-  },
-  {
-    "name": "腾讯视频",
-    "url": "https://v.qq.com",
-    "category": "视频"
-  },
-  {
-    "name": "网易云音乐",
-    "url": "https://music.163.com",
-    "category": "娱乐"
-  },
-  {
-    "name": "QQ音乐",
-    "url": "https://y.qq.com",
-    "category": "娱乐"
-  },
-  {
-    "name": "酷狗音乐",
-    "url": "https://www.kugou.com",
-    "category": "娱乐"
-  },
-  {
-    "name": "喜马拉雅",
-    "url": "https://www.ximalaya.com",
-    "category": "娱乐"
-  },
-  {
-    "name": "淘宝",
-    "url": "https://www.taobao.com",
-    "category": "购物"
-  },
-  {
-    "name": "京东",
-    "url": "https://www.jd.com",
-    "category": "购物"
-  },
-  {
-    "name": "天猫",
-    "url": "https://www.tmall.com",
-    "category": "购物"
-  },
-  {
-    "name": "亚马逊",
-    "url": "https://www.amazon.com",
-    "category": "购物"
-  },
-  {
-    "name": "红白机",
-    "url": "https://hongbaiji.pages.dev",
-    "category": "游戏"
-  },
-  {
-    "name": "GitHub",
-    "url": "https://github.com",
-    "category": "开发"
-  },
-  {
-    "name": "掘金",
-    "url": "https://juejin.cn",
-    "category": "开发"
-  },
-  {
-    "name": "CSDN",
-    "url": "https://www.csdn.net",
-    "category": "开发"
-  },
-  {
-    "name": "Google Drive",
-    "url": "https://drive.google.com",
-    "category": "工具"
-  },
-  {
-    "name": "OneDrive",
-    "url": "https://onedrive.live.com",
-    "category": "工具"
-  },
-  {
-    "name": "Dropbox",
-    "url": "https://www.dropbox.com",
-    "category": "工具"
-  },
-  {
-    "name": "Notion",
-    "url": "https://www.notion.so",
-    "category": "工具"
-  },
-  {
-    "name": "石墨文档",
-    "url": "https://shimo.im",
-    "category": "工具"
-  },
-  {
-    "name": "QQ邮箱",
-    "url": "https://mail.qq.com",
-    "category": "工具"
-  },
-  {
-    "name": "Gmail",
-    "url": "https://mail.google.com",
-    "category": "工具"
-  },
-  {
-    "name": "新浪新闻",
-    "url": "https://news.sina.com.cn",
-    "category": "新闻"
-  },
-  {
-    "name": "网易新闻",
-    "url": "https://news.163.com",
-    "category": "新闻"
-  },
-  {
-    "name": "腾讯新闻",
-    "url": "https://news.qq.com",
-    "category": "新闻"
-  },
-  {
-    "name": "今日头条",
-    "url": "https://www.toutiao.com",
-    "category": "新闻"
-  },
-  {
-    "name": "BBC",
-    "url": "https://www.bbc.com",
-    "category": "新闻"
-  },
-  {
-    "name": "CNN",
-    "url": "https://edition.cnn.com",
-    "category": "新闻"
-  },
-  {
-    "name": "中国大学MOOC",
-    "url": "https://www.icourse163.org",
-    "category": "学习"
-  },
-  {
-    "name": "Coursera",
-    "url": "https://www.coursera.org",
-    "category": "学习"
-  },
-  {
-    "name": "edX",
-    "url": "https://www.edx.org",
-    "category": "学习"
-  },
-  {
-    "name": "Khan Academy",
-    "url": "https://www.khanacademy.org",
-    "category": "学习"
-  },
-  {
-    "name": "维基百科",
-    "url": "https://www.wikipedia.org",
-    "category": "学习"
-  },
-  {
-    "name": "知乎专栏",
-    "url": "https://zhuanlan.zhihu.com",
-    "category": "学习"
-  },
-  {
-    "name": "简书",
-    "url": "https://www.jianshu.com",
-    "category": "学习"
-  },
-  {
-    "name": "豆瓣读书",
-    "url": "https://book.douban.com",
-    "category": "学习"
-  },
-  {
-    "name": "雪球",
-    "url": "https://xueqiu.com",
-    "category": "金融"
-  },
-  {
-    "name": "东方财富",
-    "url": "https://www.eastmoney.com",
-    "category": "金融"
-  },
-  {
-    "name": "同花顺",
-    "url": "https://www.10jqka.com.cn",
-    "category": "金融"
-  },
-  {
-    "name": "新浪财经",
-    "url": "https://finance.sina.com.cn",
-    "category": "金融"
-  },
-  {
-    "name": "Google Maps",
-    "url": "https://maps.google.com",
-    "category": "工具"
-  },
-  {
-    "name": "高德地图",
-    "url": "https://www.amap.com",
-    "category": "工具"
-  },
-  {
-    "name": "腾讯地图",
-    "url": "https://map.qq.com",
-    "category": "工具"
-  },
-  {
-    "name": "LinkedIn",
-    "url": "https://www.linkedin.com",
-    "category": "社交"
-  },
-  {
-    "name": "Facebook",
-    "url": "https://www.facebook.com",
-    "category": "社交"
-  },
-  {
-    "name": "Twitter",
-    "url": "https://twitter.com",
-    "category": "社交"
-  },
-  {
-    "name": "Instagram",
-    "url": "https://www.instagram.com",
-    "category": "社交"
-  },
-  {
-    "name": "WhatsApp",
-    "url": "https://www.whatsapp.com",
-    "category": "社交"
-  },
-  {
-    "name": "Telegram",
-    "url": "https://web.telegram.org",
-    "category": "社交"
-  },
-  {
-    "name": "TripAdvisor",
-    "url": "https://www.tripadvisor.com",
-    "category": "旅行"
-  },
-  {
-    "name": "Booking",
-    "url": "https://www.booking.com",
-    "category": "旅行"
-  },
-  {
-    "name": "Airbnb",
-    "url": "https://www.airbnb.com",
-    "category": "旅行"
-  },
-  {
-    "name": "携程",
-    "url": "https://www.ctrip.com",
-    "category": "旅行"
-  },
-  {
-    "name": "美团",
-    "url": "https://www.meituan.com",
-    "category": "生活服务"
-  },
-  {
-    "name": "大众点评",
-    "url": "https://www.dianping.com",
-    "category": "生活服务"
-  },
-  {
-    "name": "滴滴出行",
-    "url": "https://www.didiglobal.com",
-    "category": "生活服务"
-  },
-  {
-    "name": "京东到家",
-    "url": "https://www.jddj.com",
-    "category": "生活服务"
-  },
-  {
-    "name": "百度网盘",
-    "url": "https://pan.baidu.com",
-    "category": "工具"
-  },
-  {
-    "name": "腾讯文档",
-    "url": "https://docs.qq.com",
-    "category": "工具"
-  },
-  {
-    "name": "WPS",
-    "url": "https://www.wps.com",
-    "category": "工具"
-  },
-  {
-    "name": "Canva",
-    "url": "https://www.canva.com",
-    "category": "工具"
-  },
-  {
-    "name": "Figma",
-    "url": "https://www.figma.com",
-    "category": "工具"
-  },
-  {
-    "name": "Unsplash",
-    "url": "https://unsplash.com",
-    "category": "工具"
-  },
-  {
-    "name": "Pixabay",
-    "url": "https://pixabay.com",
-    "category": "工具"
-  },
-  {
-    "name": "GitLab",
-    "url": "https://gitlab.com",
-    "category": "开发"
-  },
-  {
-    "name": "Bitbucket",
-    "url": "https://bitbucket.org",
-    "category": "开发"
-  },
-  {
-    "name": "LeetCode",
-    "url": "https://leetcode.com",
-    "category": "开发"
-  },
-  {
-    "name": "Hackerrank",
-    "url": "https://www.hackerrank.com",
-    "category": "开发"
-  },
-  {
-    "name": "Medium",
-    "url": "https://medium.com",
-    "category": "学习"
-  },
-  {
-    "name": "TED",
-    "url": "https://www.ted.com",
-    "category": "学习"
-  },
-  {
-    "name": "网易公开课",
-    "url": "https://open.163.com",
-    "category": "学习"
-  },
-  {
-    "name": "Sina Blog",
-    "url": "https://blog.sina.com.cn",
-    "category": "社交"
-  },
-  {
-    "name": "网易考拉",
-    "url": "https://www.kaola.com",
-    "category": "购物"
-  },
-  {
-    "name": "唯品会",
-    "url": "https://www.vip.com",
-    "category": "购物"
-  }
+  {"name":"百度","url":"https://www.baidu.com","category":"工具"},
+  {"name":"谷歌","url":"https://www.google.com","category":"工具"},
+  {"name":"必应","url":"https://www.bing.com","category":"搜索"},
+  {"name":"搜狗","url":"https://www.sogou.com","category":"搜索"},
+  {"name":"知乎","url":"https://www.zhihu.com","category":"社交"},
+  {"name":"微博","url":"https://www.weibo.com","category":"社交"},
+  {"name":"豆瓣","url":"https://www.douban.com","category":"社交"},
+  {"name":"抖音","url":"https://www.douyin.com","category":"视频"},
+  {"name":"B站","url":"https://www.bilibili.com","category":"视频"},
+  {"name":"优酷","url":"https://www.youku.com","category":"视频"},
+  {"name":"爱奇艺","url":"https://www.iqiyi.com","category":"视频"},
+  {"name":"腾讯视频","url":"https://v.qq.com","category":"视频"},
+  {"name":"网易云音乐","url":"https://music.163.com","category":"娱乐"},
+  {"name":"QQ音乐","url":"https://y.qq.com","category":"娱乐"},
+  {"name":"酷狗音乐","url":"https://www.kugou.com","category":"娱乐"},
+  {"name":"喜马拉雅","url":"https://www.ximalaya.com","category":"娱乐"},
+  {"name":"淘宝","url":"https://www.taobao.com","category":"购物"},
+  {"name":"京东","url":"https://www.jd.com","category":"购物"},
+  {"name":"天猫","url":"https://www.tmall.com","category":"购物"},
+  {"name":"亚马逊","url":"https://www.amazon.com","category":"购物"},
+  {"name":"红白机","url":"https://hongbaiji.pages.dev","category":"游戏"},
+  {"name":"GitHub","url":"https://github.com","category":"开发"},
+  {"name":"掘金","url":"https://juejin.cn","category":"开发"},
+  {"name":"CSDN","url":"https://www.csdn.net","category":"开发"},
+  {"name":"Google Drive","url":"https://drive.google.com","category":"工具"},
+  {"name":"OneDrive","url":"https://onedrive.live.com","category":"工具"},
+  {"name":"Dropbox","url":"https://www.dropbox.com","category":"工具"},
+  {"name":"Notion","url":"https://www.notion.so","category":"工具"},
+  {"name":"石墨文档","url":"https://shimo.im","category":"工具"},
+  {"name":"QQ邮箱","url":"https://mail.qq.com","category":"工具"},
+  {"name":"Gmail","url":"https://mail.google.com","category":"工具"},
+  {"name":"新浪新闻","url":"https://news.sina.com.cn","category":"新闻"},
+  {"name":"网易新闻","url":"https://news.163.com","category":"新闻"},
+  {"name":"腾讯新闻","url":"https://news.qq.com","category":"新闻"},
+  {"name":"今日头条","url":"https://www.toutiao.com","category":"新闻"},
+  {"name":"BBC","url":"https://www.bbc.com","category":"新闻"},
+  {"name":"CNN","url":"https://edition.cnn.com","category":"新闻"},
+  {"name":"中国大学MOOC","url":"https://www.icourse163.org","category":"学习"},
+  {"name":"Coursera","url":"https://www.coursera.org","category":"学习"},
+  {"name":"edX","url":"https://www.edx.org","category":"学习"},
+  {"name":"Khan Academy","url":"https://www.khanacademy.org","category":"学习"},
+  {"name":"维基百科","url":"https://www.wikipedia.org","category":"学习"},
+  {"name":"知乎专栏","url":"https://zhuanlan.zhihu.com","category":"学习"},
+  {"name":"简书","url":"https://www.jianshu.com","category":"学习"},
+  {"name":"豆瓣读书","url":"https://book.douban.com","category":"学习"},
+  {"name":"雪球","url":"https://xueqiu.com","category":"金融"},
+  {"name":"东方财富","url":"https://www.eastmoney.com","category":"金融"},
+  {"name":"同花顺","url":"https://www.10jqka.com.cn","category":"金融"},
+  {"name":"新浪财经","url":"https://finance.sina.com.cn","category":"金融"},
+  {"name":"Google Maps","url":"https://maps.google.com","category":"工具"},
+  {"name":"高德地图","url":"https://www.amap.com","category":"工具"},
+  {"name":"腾讯地图","url":"https://map.qq.com","category":"工具"},
+  {"name":"LinkedIn","url":"https://www.linkedin.com","category":"社交"},
+  {"name":"Facebook","url":"https://www.facebook.com","category":"社交"},
+  {"name":"Twitter","url":"https://twitter.com","category":"社交"},
+  {"name":"Instagram","url":"https://www.instagram.com","category":"社交"},
+  {"name":"WhatsApp","url":"https://www.whatsapp.com","category":"社交"},
+  {"name":"Telegram","url":"https://web.telegram.org","category":"社交"},
+  {"name":"TripAdvisor","url":"https://www.tripadvisor.com","category":"旅行"},
+  {"name":"Booking","url":"https://www.booking.com","category":"旅行"},
+  {"name":"Airbnb","url":"https://www.airbnb.com","category":"旅行"},
+  {"name":"携程","url":"https://www.ctrip.com","category":"旅行"},
+  {"name":"美团","url":"https://www.meituan.com","category":"生活服务"},
+  {"name":"大众点评","url":"https://www.dianping.com","category":"生活服务"},
+  {"name":"滴滴出行","url":"https://www.didiglobal.com","category":"生活服务"},
+  {"name":"京东到家","url":"https://www.jddj.com","category":"生活服务"},
+  {"name":"百度网盘","url":"https://pan.baidu.com","category":"工具"},
+  {"name":"腾讯文档","url":"https://docs.qq.com","category":"工具"},
+  {"name":"WPS","url":"https://www.wps.com","category":"工具"},
+  {"name":"Canva","url":"https://www.canva.com","category":"工具"},
+  {"name":"Figma","url":"https://www.figma.com","category":"工具"},
+  {"name":"Unsplash","url":"https://unsplash.com","category":"工具"},
+  {"name":"Pixabay","url":"https://pixabay.com","category":"工具"},
+  {"name":"GitLab","url":"https://gitlab.com","category":"开发"},
+  {"name":"Bitbucket","url":"https://bitbucket.org","category":"开发"},
+  {"name":"LeetCode","url":"https://leetcode.com","category":"开发"},
+  {"name":"Hackerrank","url":"https://www.hackerrank.com","category":"开发"},
+  {"name":"Medium","url":"https://medium.com","category":"学习"},
+  {"name":"TED","url":"https://www.ted.com","category":"学习"},
+  {"name":"网易公开课","url":"https://open.163.com","category":"学习"},
+  {"name":"Sina Blog","url":"https://blog.sina.com.cn","category":"社交"},
+  {"name":"网易考拉","url":"https://www.kaola.com","category":"购物"},
+  {"name":"唯品会","url":"https://www.vip.com","category":"购物"}
 ]
