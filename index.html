@@ -109,8 +109,10 @@
         .forEach(b => {
           const li = document.createElement("li");
 
+          // Google favicon
           const googleFavicon = `https://www.google.com/s2/favicons?sz=32&domain_url=${b.url}`;
-          const defaultFavicon = './icons/default.png'; // 相对路径，兼容 GitHub Pages 子目录
+          // 本地默认 favicon，加参数防止缓存
+          const defaultFavicon = './icons/default.png?v=1';
 
           li.innerHTML = `
             <img class="favicon" 
