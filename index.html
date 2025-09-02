@@ -21,6 +21,7 @@
       font-size: 14px;
       border-radius: 5px;
       border: 1px solid #ccc;
+      width: 300px;
     }
     .grid-container {
       display: grid;
@@ -63,10 +64,13 @@
 <body>
 
   <div id="controls">
-    <input id="search-input" type="text" placeholder="搜索书签..." oninput="renderBookmarks()">
+    <input id="search-input" type="text" placeholder="搜索书签（中文/拼音）..." oninput="renderBookmarks()">
   </div>
 
   <div class="grid-container" id="bookmark-grid"></div>
+
+  <!-- 引入 tiny-pinyin -->
+  <script src="https://cdn.jsdelivr.net/npm/tiny-pinyin/dist/tiny-pinyin.min.js"></script>
 
   <script>
     let allBookmarks = [];
@@ -127,10 +131,13 @@
         title.textContent = cat;
         col.appendChild(title);
 
-        const filtered = allBookmarks.filter(b => 
-          b.category === cat && 
-          (!search || b.name.toLowerCase().includes(search) || b.url.toLowerCase().includes(search))
-        );
+        const filtered = allBookmarks.filter(b => {
+          const name = b.name.toLowerCase();
+          const url = b.url.toLowerCase();
+          const pinyinName = Pinyin.convertToPinyin(b.name).replace(/\s+/g,'').toLowerCase();
+          return b.category === cat && 
+                 (!search || name.includes(search) || pinyinName.includes(search) || url.includes(search));
+        });
 
         filtered.forEach(b => {
           const div = document.createElement("div");
@@ -143,7 +150,7 @@
           link.textContent = b.name;
           div.appendChild(link);
 
-          col.appendChild(div); // ✅ 这里一定要加
+          col.appendChild(div);
         });
 
         grid.appendChild(col);
