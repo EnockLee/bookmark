@@ -30,7 +30,15 @@
       padding: 10px; 
       border-radius: 8px; 
       box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
-      text-align: center; 
+      text-align: left; 
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    li img {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
     }
     li a { 
       text-decoration: none; 
@@ -39,7 +47,6 @@
     }
     li small { 
       display: block; 
-      margin-top: 5px; 
       color: #666; 
       font-size: 12px; 
     }
@@ -59,11 +66,17 @@
   <script>
     let allBookmarks = [];
 
-    // 从 GitHub 仓库加载书签 JSON
     async function loadBookmarks() {
       try {
-        const res = await fetch("bookmarks.json");  // 替换成你的 JSON 路径
-        allBookmarks = await res.json();
+        const res = await fetch("bookmarks.json");
+        const data = await res.json();
+
+        // ✅ 预处理：给每个书签加上 domain 字段
+        allBookmarks = data.map(b => ({
+          ...b,
+          domain: new URL(b.url).hostname
+        }));
+
         initCategories();
         renderBookmarks();
       } catch (err) {
@@ -71,7 +84,6 @@
       }
     }
 
-    // 初始化分类下拉菜单
     function initCategories() {
       const select = document.getElementById("filter-category");
       const categories = [...new Set(allBookmarks.map(b => b.category))];
@@ -83,7 +95,6 @@
       });
     }
 
-    // 渲染书签列表
     function renderBookmarks() {
       const list = document.getElementById("bookmark-list");
       const search = document.getElementById("search-input").value.toLowerCase();
@@ -95,9 +106,13 @@
                      (!search || b.name.toLowerCase().includes(search) || b.url.toLowerCase().includes(search)))
         .forEach(b => {
           const li = document.createElement("li");
+
           li.innerHTML = `
-            <a href="${b.url}" target="_blank">${b.name}</a>
-            <small>[${b.category}]</small>
+            <img src="https://www.google.com/s2/favicons?sz=32&domain=${b.domain}" alt="icon">
+            <div>
+              <a href="${b.url}" target="_blank">${b.name}</a>
+              <small>[${b.category}]</small>
+            </div>
           `;
           list.appendChild(li);
         });
