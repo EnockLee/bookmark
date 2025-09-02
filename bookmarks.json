@@ -110,11 +110,6 @@
     "category": "开发"
   },
   {
-    "name": "Stack Overflow",
-    "url": "https://stackoverflow.com",
-    "category": "开发"
-  },
-  {
     "name": "掘金",
     "url": "https://juejin.cn",
     "category": "开发"
@@ -367,11 +362,6 @@
   {
     "name": "Pixabay",
     "url": "https://pixabay.com",
-    "category": "工具"
-  },
-  {
-    "name": "Adobe Creative Cloud",
-    "url": "https://www.adobe.com/creativecloud",
     "category": "工具"
   },
   {
