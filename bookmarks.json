@@ -170,71 +170,6 @@
     "category": "开发/学习"
   },
   {
-    "name": "CSDN",
-    "url": "https://www.csdn.net",
-    "category": "开发/学习"
-  },
-  {
-    "name": "LeetCode",
-    "url": "https://leetcode.com",
-    "category": "开发/学习"
-  },
-  {
-    "name": "Hackerrank",
-    "url": "https://www.hackerrank.com",
-    "category": "开发/学习"
-  },
-  {
-    "name": "中国大学MOOC",
-    "url": "https://www.icourse163.org",
-    "category": "开发/学习"
-  },
-  {
-    "name": "Coursera",
-    "url": "https://www.coursera.org",
-    "category": "开发/学习"
-  },
-  {
-    "name": "edX",
-    "url": "https://www.edx.org",
-    "category": "开发/学习"
-  },
-  {
-    "name": "Khan Academy",
-    "url": "https://www.khanacademy.org",
-    "category": "开发/学习"
-  },
-  {
-    "name": "维基百科",
-    "url": "https://www.wikipedia.org",
-    "category": "开发/学习"
-  },
-  {
-    "name": "简书",
-    "url": "https://www.jianshu.com",
-    "category": "开发/学习"
-  },
-  {
-    "name": "豆瓣读书",
-    "url": "https://book.douban.com",
-    "category": "开发/学习"
-  },
-  {
-    "name": "网易公开课",
-    "url": "https://open.163.com",
-    "category": "开发/学习"
-  },
-  {
-    "name": "Medium",
-    "url": "https://medium.com",
-    "category": "开发/学习"
-  },
-  {
-    "name": "TED",
-    "url": "https://www.ted.com",
-    "category": "开发/学习"
-  },
-  {
     "name": "Google Drive",
     "url": "https://drive.google.com",
     "category": "工具/办公"
@@ -242,21 +177,6 @@
   {
     "name": "OneDrive",
     "url": "https://onedrive.live.com",
-    "category": "工具/办公"
-  },
-  {
-    "name": "Dropbox",
-    "url": "https://www.dropbox.com",
-    "category": "工具/办公"
-  },
-  {
-    "name": "Notion",
-    "url": "https://www.notion.so",
-    "category": "工具/办公"
-  },
-  {
-    "name": "石墨文档",
-    "url": "https://shimo.im",
     "category": "工具/办公"
   },
   {
@@ -290,36 +210,6 @@
     "category": "工具/办公"
   },
   {
-    "name": "腾讯文档",
-    "url": "https://docs.qq.com",
-    "category": "工具/办公"
-  },
-  {
-    "name": "WPS",
-    "url": "https://www.wps.com",
-    "category": "工具/办公"
-  },
-  {
-    "name": "Canva",
-    "url": "https://www.canva.com",
-    "category": "工具/办公"
-  },
-  {
-    "name": "Figma",
-    "url": "https://www.figma.com",
-    "category": "工具/办公"
-  },
-  {
-    "name": "Unsplash",
-    "url": "https://unsplash.com",
-    "category": "工具/办公"
-  },
-  {
-    "name": "Pixabay",
-    "url": "https://pixabay.com",
-    "category": "工具/办公"
-  },
-  {
     "name": "新浪新闻",
     "url": "https://news.sina.com.cn",
     "category": "新闻/金融/旅行/生活/游戏"
@@ -337,76 +227,6 @@
   {
     "name": "今日头条",
     "url": "https://www.toutiao.com",
-    "category": "新闻/金融/旅行/生活/游戏"
-  },
-  {
-    "name": "BBC",
-    "url": "https://www.bbc.com",
-    "category": "新闻/金融/旅行/生活/游戏"
-  },
-  {
-    "name": "CNN",
-    "url": "https://edition.cnn.com",
-    "category": "新闻/金融/旅行/生活/游戏"
-  },
-  {
-    "name": "雪球",
-    "url": "https://xueqiu.com",
-    "category": "新闻/金融/旅行/生活/游戏"
-  },
-  {
-    "name": "东方财富",
-    "url": "https://www.eastmoney.com",
-    "category": "新闻/金融/旅行/生活/游戏"
-  },
-  {
-    "name": "同花顺",
-    "url": "https://www.10jqka.com.cn",
-    "category": "新闻/金融/旅行/生活/游戏"
-  },
-  {
-    "name": "新浪财经",
-    "url": "https://finance.sina.com.cn",
-    "category": "新闻/金融/旅行/生活/游戏"
-  },
-  {
-    "name": "TripAdvisor",
-    "url": "https://www.tripadvisor.com",
-    "category": "新闻/金融/旅行/生活/游戏"
-  },
-  {
-    "name": "Booking",
-    "url": "https://www.booking.com",
-    "category": "新闻/金融/旅行/生活/游戏"
-  },
-  {
-    "name": "Airbnb",
-    "url": "https://www.airbnb.com",
-    "category": "新闻/金融/旅行/生活/游戏"
-  },
-  {
-    "name": "携程",
-    "url": "https://www.ctrip.com",
-    "category": "新闻/金融/旅行/生活/游戏"
-  },
-  {
-    "name": "美团",
-    "url": "https://www.meituan.com",
-    "category": "新闻/金融/旅行/生活/游戏"
-  },
-  {
-    "name": "大众点评",
-    "url": "https://www.dianping.com",
-    "category": "新闻/金融/旅行/生活/游戏"
-  },
-  {
-    "name": "滴滴出行",
-    "url": "https://www.didiglobal.com",
-    "category": "新闻/金融/旅行/生活/游戏"
-  },
-  {
-    "name": "京东到家",
-    "url": "https://www.jddj.com",
     "category": "新闻/金融/旅行/生活/游戏"
   },
   {
